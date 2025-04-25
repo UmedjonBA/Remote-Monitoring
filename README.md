@@ -13,8 +13,8 @@ A client-server application for monitoring work activity in an organization.
 - Implements screenshot capture functionality
 
 ### Server
-- Written in C#
-- .NET Core based application
+- Written in C++
+- Cross-platform application
 - Manages client connections
 - Handles screenshot requests
 - Provides web interface for monitoring
@@ -27,10 +27,10 @@ mon_rem/
 │   ├── src/               # Source code
 │   ├── include/           # Header files
 │   └── CMakeLists.txt     # Build configuration
-├── Server/                # C# server application
-│   ├── Program.cs         # Server entry point
-│   ├── Server.csproj      # Project configuration
-│   └── appsettings.json   # Server settings
+├── Server/                # C++ server application
+│   ├── src/               # Source code
+│   ├── include/           # Header files
+│   └── CMakeLists.txt     # Build configuration
 └── README.md              # This file
 ```
 
@@ -57,11 +57,16 @@ mon_rem/
    ```bash
    cd mon_rem/Server
    ```
-2. Build and run the server:
+2. Create build directory and configure:
    ```bash
-   dotnet build
-   dotnet run
+   mkdir build && cd build
+   cmake ..
    ```
+3. Build the project:
+   ```bash
+   cmake --build .
+   ```
+4. The executable will be created in the `build` directory
 
 ## Requirements
 
@@ -72,14 +77,16 @@ mon_rem/
 - Windows SDK
 
 ### Server
-- .NET 6.0 or later
-- Visual Studio 2022 or later (recommended)
+- CMake 3.15 or later
+- C++17 compatible compiler
+- Boost libraries
+- OpenSSL
 
 ## Configuration
 
 ### Server Configuration
 - Default port: 8080
-- Configuration file: `Server/appsettings.json`
+- Configuration file: `Server/config.json`
 - Web interface available at: `http://localhost:8080`
 
 ### Client Configuration
@@ -91,8 +98,8 @@ mon_rem/
 
 1. Start the server application:
    ```bash
-   cd mon_rem/Server
-   dotnet run
+   cd mon_rem/Server/build
+   ./server
    ```
 2. Deploy the client application to target machines
 3. The client will automatically connect to the server
