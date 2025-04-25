@@ -14,80 +14,52 @@ A client-server application for monitoring work activity in an organization.
 
 ### Server
 - Written in C++
-- Cross-platform application
+- Windows application
 - Manages client connections
 - Handles screenshot requests
-- Provides web interface for monitoring
+- Provides GUI interface for monitoring
 
 ## Project Structure
 
 ```
 mon_rem/
 ├── Client/                 # Windows client application
-│   ├── src/               # Source code
-│   ├── include/           # Header files
-│   └── CMakeLists.txt     # Build configuration
+│   ├── *.cpp              # Source files
+│   ├── *.h                # Header files
+│   └── Client.vcxproj     # Visual Studio project file
 ├── Server/                # C++ server application
-│   ├── src/               # Source code
-│   ├── include/           # Header files
-│   └── CMakeLists.txt     # Build configuration
-└── README.md              # This file
+│   ├── *.cpp              # Source files
+│   ├── *.h                # Header files
+│   └── Server.vcxproj     # Visual Studio project file
+├── Common/                # Shared code
+└── RemoteMonitoring.sln   # Visual Studio solution file
 ```
 
 ## Building the Project
 
-### Client
-1. Navigate to the Client directory:
-   ```bash
-   cd mon_rem/Client
-   ```
-2. Create build directory and configure:
-   ```bash
-   mkdir build && cd build
-   cmake ..
-   ```
-3. Build the project:
-   ```bash
-   cmake --build .
-   ```
-4. The executable will be created in the `build` directory
+### Using Visual Studio
+1. Open `RemoteMonitoring.sln` in Visual Studio 2019 or later
+2. Select the desired configuration (Debug/Release)
+3. Build the solution (F7 or Build -> Build Solution)
+4. The executables will be created in the respective Debug/Release directories
 
-### Server
-1. Navigate to the Server directory:
-   ```bash
-   cd mon_rem/Server
-   ```
-2. Create build directory and configure:
-   ```bash
-   mkdir build && cd build
-   cmake ..
-   ```
-3. Build the project:
-   ```bash
-   cmake --build .
-   ```
-4. The executable will be created in the `build` directory
-
-## Requirements
+### Requirements
 
 ### Client
 - Windows 10 or later
-- CMake 3.15 or later
 - Visual Studio 2019 or later with C++ development tools
 - Windows SDK
 
 ### Server
-- CMake 3.15 or later
-- C++17 compatible compiler
-- Boost libraries
-- OpenSSL
+- Windows 10 or later
+- Visual Studio 2019 or later with C++ development tools
+- Windows SDK
 
 ## Configuration
 
 ### Server Configuration
 - Default port: 8080
-- Configuration file: `Server/config.json`
-- Web interface available at: `http://localhost:8080`
+- Configuration can be modified through the GUI interface
 
 ### Client Configuration
 - Server connection settings in `Client/config.ini`
@@ -97,13 +69,10 @@ mon_rem/
 ## Usage
 
 1. Start the server application:
-   ```bash
-   cd mon_rem/Server/build
-   ./server
-   ```
+   - Run `Server.exe` from the Server/Debug or Server/Release directory
 2. Deploy the client application to target machines
 3. The client will automatically connect to the server
-4. Monitor connected clients through the web interface
+4. Monitor connected clients through the server interface
 5. Request screenshots as needed
 
 ## Troubleshooting
@@ -129,8 +98,8 @@ mon_rem/
 
 ### Building from Source
 1. Clone the repository
-2. Install required dependencies
-3. Follow build instructions above
+2. Open the solution in Visual Studio
+3. Build the project
 
 ### Contributing
 1. Fork the repository
